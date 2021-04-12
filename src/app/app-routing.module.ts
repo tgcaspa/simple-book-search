@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => import('./search/search.module').then(m => m.SearchModule),
   },
   {
+    path: 'wishlist',
+    loadChildren: () => import('./wishlist/wishlist.module').then(m => m.WishlistModule),
+  },
+  {
     path: '**',
     redirectTo: '/',
     pathMatch: 'full'
