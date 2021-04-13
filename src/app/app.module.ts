@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
+import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
 
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
-import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
-import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,12 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     environment.production ? [] : AkitaNgDevtools.forRoot()
   ],
-  providers: [{ provide: NG_ENTITY_SERVICE_CONFIG, useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' }}],
+  providers: [
+    {
+      provide: NG_ENTITY_SERVICE_CONFIG,
+      useValue: { baseUrl: environment.api.booksVolumes.baseUrl }
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
