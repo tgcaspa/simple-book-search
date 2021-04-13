@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { NotEmptyUsernameValidatorDirective } from '../forms/not-empty.directive';
+import { UserService } from '../services/user.service';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,9 @@ import { NotEmptyUsernameValidatorDirective } from '../forms/not-empty.directive
   ],
   exports: [
     NotEmptyUsernameValidatorDirective
+  ],
+  providers: [
+    UserService
   ]
 })
 export class UserModule { }
