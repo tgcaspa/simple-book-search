@@ -7,6 +7,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './common/auth/auth.module';
+import { LayoutModule } from './layout/layout.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { AuthModule } from './common/auth/auth.module';
   imports: [
     BrowserModule,
     AuthModule,
+    LayoutModule,
     AppRoutingModule,
     environment.production ? [] : AkitaNgDevtools.forRoot()
   ],
