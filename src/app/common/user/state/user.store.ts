@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store, StoreConfig } from '@datorama/akita';
 
-import { createInitialUserState, UserState } from "./user.state";
+import { UserState, createInitialUserState } from './user.model';
 
 export const STORE_NAME_USER = 'user';
 
