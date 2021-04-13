@@ -4,7 +4,7 @@ import { take } from 'rxjs/operators';
 
 import { AuthService } from './../../common/auth/services/auth.service';
 import { UserQuery } from './../../common/user/state/user.query';
-import { UserState } from './../../common/user/state/user.state';
+import { UserState } from './../../common/user/state/user.model';
 
 @Component({
   selector: 'app-layout-header',

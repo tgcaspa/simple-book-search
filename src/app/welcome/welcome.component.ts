@@ -1,10 +1,10 @@
-import { createInitialUserState } from '../common/user/state/user.state';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 
 import { UserService } from '../common/user/services/user.service';
+import { createInitialUserState } from '../common/user/state/user.model';
 
 @Component({
   selector: 'app-welcome',
