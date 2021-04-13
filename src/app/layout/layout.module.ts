@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { UserModule } from '../common/user/user/user.module';
+import { UserModule } from '../common/user/user.module';
 import { LayoutHeaderComponent } from './layout-header/layout-header.component';
 
 @NgModule({
