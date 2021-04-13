@@ -1,1 +1,26 @@
 <p>welcome works!</p>
+
+<input id="username"
+       name="username"
+       class="form-control"
+       autocomplete="false"
+       appNotEmptyUsername
+       [formControl]="usernameControl">
+<!-- Error messages -->
+<div *ngIf="!usernameControl.pristine && usernameControl.invalid"
+     class="text-danger">
+    <!-- Username error -->
+    <p *ngIf="usernameControl.hasError('username')">{{ usernameControl.getError('username') }}</p>
+</div>
+
+
+<div class="container">
+  <div class="actions text-center">
+    <button class="btn"
+            [disabled]="usernameControl.invalid"
+            (click)="onContinue()">
+      <i class="fa fa-2x fa-angle-double-down" aria-hidden="true"></i>
+      <span class="mt-2 d-block">Continue</span>
+    </button>
+  </div>
+</div>
