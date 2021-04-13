@@ -1,0 +1,34 @@
+.toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #1976d2;
+  font-weight: 600;
+
+  * {
+    color: white;
+  }
+
+  img {
+    margin: 0 1rem;
+  }
+
+  .btn-logout,
+  #github-logo {
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  #github-logo {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    margin: 0 1rem;
+    font-size: 40px;
+  }
+}
