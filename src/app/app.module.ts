@@ -23,7 +23,7 @@ import { LayoutModule } from './layout/layout.module';
   providers: [
     {
       provide: NG_ENTITY_SERVICE_CONFIG,
-      useValue: { baseUrl: environment.api.booksVolumes.baseUrl }
+      useValue: { baseUrl: environment.api.books.baseUrl }
     }
   ],
   bootstrap: [AppComponent]
