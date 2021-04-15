@@ -2,7 +2,6 @@ import { persistState } from '@datorama/akita';
 
 import { environment } from 'src/environments/environment';
 import { STORE_NAME_USER } from './common/user/state/user.store';
-import { STORE_NAME_BOOKS } from './common/books/state/books.store';
 import { STORE_NAME_SEARCH } from './search/state/search/search.store';
 
 export const APP_STORE_NAME = `${environment.appName}Stores`;
@@ -12,7 +11,6 @@ export const registerAppStores = () => persistState({
   storage: sessionStorage,
   include: [
     STORE_NAME_USER,
-    STORE_NAME_BOOKS,
     STORE_NAME_SEARCH
   ]
 });
