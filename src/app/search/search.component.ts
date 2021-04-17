@@ -21,6 +21,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   books$: Observable<BooksState>;
   isLoading$: Observable<boolean>;
 
+  hideFooterActions: boolean = true;
+
   constructor(private searchService: SearchService,
               private searchStore: SearchStore,
               private searchQuery: SearchQuery,

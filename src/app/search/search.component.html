@@ -28,7 +28,9 @@
       <div class="row">
         <div *ngFor="let bookItem of books; trackBy: trackBooksItemsByFn"
              class="col-xs-12 col-sm-6 col-md-4 mb-5">
-          <app-volume-info-card [bookItem]="bookItem"></app-volume-info-card>
+          <app-volume-info-card [bookItem]="bookItem"
+                                [hideFooterActions]="hideFooterActions">
+          </app-volume-info-card>
         </div>
       </div>
     </ng-container>
