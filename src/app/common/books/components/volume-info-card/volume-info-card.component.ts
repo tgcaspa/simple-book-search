@@ -19,6 +19,9 @@ export class VolumeInfoCardComponent {
   @Input()
   disableShowMoreDetails?: boolean;
 
+  @Input()
+  hideFooterActions?: boolean;
+
   private modalRef: BsModalRef;
   private modalOptions: ModalOptions = {
     class: 'modal-xl'
@@ -42,5 +45,9 @@ export class VolumeInfoCardComponent {
       // Remove active book item.
       this.booksStore.removeActive(this.bookItem.id);
     });
+  }
+
+  onRemoveFromWishlist(bookItem: BookItem): void {
+    // TODO
   }
 }

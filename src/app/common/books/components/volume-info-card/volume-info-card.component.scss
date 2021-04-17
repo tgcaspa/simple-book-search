@@ -1,5 +1,4 @@
 .card {
-  height: 9rem;
   cursor: pointer;
   box-shadow: 1px 1px 5px #c9c9c9;
 
@@ -12,6 +11,7 @@
   }
 
   &-body {
+    height: 9rem;
     padding: 0.5rem;
     padding-left: 8rem;
   }

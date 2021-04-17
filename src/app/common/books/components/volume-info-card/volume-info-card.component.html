@@ -25,4 +25,14 @@
       </div>
     </div>
   </div>
+  <div *ngIf="!hideFooterActions"
+       class="card-footer actions">
+    <button type="button"
+            class="btn btn-danger btn-remove-from-withlist w-100"
+            title="Remove From Wishlist"
+            (click)="onRemoveFromWishlist(bookItem)">
+      <i class="fa fa-trash mx-2" aria-hidden="true"></i>
+      Remove From Wishlist
+    </button>
+  </div>
 </div>
