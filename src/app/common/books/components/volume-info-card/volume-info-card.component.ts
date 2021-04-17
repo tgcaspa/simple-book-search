@@ -36,7 +36,11 @@ export class VolumeInfoCardComponent {
     this.booksStore.setActive(this.bookItem.id);
 
     this.modalRef = this.modalService.show(VolumeInfoModalComponent, this.modalOptions);
-    // Destroy modalRef on close.
-    this.modalRef.onHidden.pipe(take(1)).subscribe(() => this.modalRef = undefined);
+    this.modalRef.onHidden.pipe(take(1)).subscribe(() => {
+      // Destroy modalRef on close.
+      this.modalRef = undefined;
+      // Remove active book item.
+      this.booksStore.removeActive(this.bookItem.id);
+    });
   }
 }
