@@ -3,10 +3,10 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BookItem } from './../../state/book.model';
-import { BooksQuery } from '../../state/books.query';
-import { WishlistService } from '../../../wishlist/services/wishlist.service';
-import { WishlistQuery } from '../../../wishlist/state/wishlist.query';
+import { BookItem } from '../../books/state/book.model';
+import { BooksQuery } from '../../books/state/books.query';
+import { WishlistService } from '../../wishlist/services/wishlist.service';
+import { WishlistQuery } from '../../wishlist/state/wishlist.query';
 
 @Component({
   selector: 'app-volume-info-modal',

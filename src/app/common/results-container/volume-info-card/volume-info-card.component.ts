@@ -2,9 +2,9 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { take } from 'rxjs/operators';
 
-import { WishlistService } from './../../../wishlist/services/wishlist.service';
-import { BookItem } from '../../state/book.model';
-import { BooksService } from '../../services/books.service';
+import { WishlistService } from '../../wishlist/services/wishlist.service';
+import { BookItem } from '../../books/state/book.model';
+import { BooksService } from '../../books/services/books.service';
 import { VolumeInfoModalComponent } from '../volume-info-modal/volume-info-modal.component';
 
 @Component({

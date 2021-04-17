@@ -1,0 +1,20 @@
+<div class="results-container">
+  <ng-container *ngIf="bookItems?.length">
+    <!-- Total results -->
+    <div class="row mb-4">
+      <div class="col">
+        <p>About {{ bookItems.length }} results</p>
+      </div>
+    </div>
+    <!-- Results list -->
+    <div class="row">
+      <div *ngFor="let bookItem of bookItems; trackBy: trackBooksItemsByFn"
+            class="col-xs-12 col-sm-6 col-md-4 mb-5">
+        <app-volume-info-card [bookItem]="bookItem"
+                              [disableShowMoreDetails]="disableShowMoreDetails"
+                              [hideFooterActions]="hideFooterActions">
+        </app-volume-info-card>
+      </div>
+    </div>
+  </ng-container>
+</div>
