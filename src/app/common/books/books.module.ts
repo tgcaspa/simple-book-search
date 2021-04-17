@@ -5,6 +5,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { WishlistCommonModule } from '../wishlist/wishlist/wishlist.module';
 import { VolumeInfoCardComponent } from './components/volume-info-card/volume-info-card.component';
 import { VolumeInfoModalComponent } from './components/volume-info-modal/volume-info-modal.component';
+import { BooksService } from './services/books.service';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { VolumeInfoModalComponent } from './components/volume-info-modal/volume-
   exports: [
     VolumeInfoCardComponent,
     VolumeInfoModalComponent
-  ]
+  ],
+  providers: [BooksService]
 })
 export class BooksModule { }

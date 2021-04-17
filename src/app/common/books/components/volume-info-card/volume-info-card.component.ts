@@ -3,8 +3,8 @@ import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { take } from 'rxjs/operators';
 
 import { WishlistService } from './../../../wishlist/services/wishlist.service';
-import { BooksStore } from './../../state/books.store';
 import { BookItem } from '../../state/book.model';
+import { BooksService } from '../../services/books.service';
 import { VolumeInfoModalComponent } from '../volume-info-modal/volume-info-modal.component';
 
 @Component({
@@ -29,7 +29,7 @@ export class VolumeInfoCardComponent {
   };
 
   constructor(private modalService: BsModalService,
-              private booksStore: BooksStore,
+              private booksService: BooksService,
               private wishlistService: WishlistService) {
   }
 
@@ -38,14 +38,14 @@ export class VolumeInfoCardComponent {
       return;
     }
 
-    this.booksStore.setActive(this.bookItem.id);
+    this.booksService.setActive(this.bookItem);
 
     this.modalRef = this.modalService.show(VolumeInfoModalComponent, this.modalOptions);
     this.modalRef.onHidden.pipe(take(1)).subscribe(() => {
       // Destroy modalRef on close.
       this.modalRef = undefined;
       // Remove active book item.
-      this.booksStore.removeActive(this.bookItem.id);
+      this.booksService.removeActive(this.bookItem);
     });
   }
 
