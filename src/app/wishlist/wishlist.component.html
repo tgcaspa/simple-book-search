@@ -1,1 +1,29 @@
-<p>wishlist works!</p>
+<ng-container *ngIf="books$ | async as books">
+  <div class="search-results-container">
+    <ng-container *ngIf="books.length; else noResults">
+      <!-- Total results -->
+      <div class="row mb-4">
+        <div class="col">
+          <p>About {{ books.length }} results</p>
+        </div>
+      </div>
+      <!-- Search results -->
+      <div class="row">
+        <div *ngFor="let bookItem of books; trackBy: trackBooksItemsByFn"
+             class="col-xs-12 col-sm-6 col-md-4 mb-5">
+          <app-volume-info-card [bookItem]="bookItem"
+                                [disableShowMoreDetails]="disableShowMoreDetails"
+                                [hideFooterActions]="hideFooterActions">
+          </app-volume-info-card>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #noResults>
+      <div class="no-results-container text-center">
+        <i class="fa fa-heart-o fa-5x mb-4" aria-hidden="true"></i>
+        <h5>No Wishlist Results</h5>
+      </div>
+    </ng-template>
+  </div>
+</ng-container>

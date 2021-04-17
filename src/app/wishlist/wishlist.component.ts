@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { BookItem, BooksState } from '../common/books/state/book.model';
+import { WishlistQuery } from './state/wishlist.query';
+import { WishlistStore } from './state/wishlist.store';
 
 @Component({
   selector: 'app-wishlist',
@@ -6,10 +11,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wishlist.component.scss']
 })
 export class WishlistComponent implements OnInit {
+  books$: Observable<BooksState>;
+  disableShowMoreDetails: boolean = true;
+  hideFooterActions: boolean = false;
 
-  constructor() { }
+  constructor(private wishlistStore: WishlistStore,
+              private wishlistQuery: WishlistQuery) { }
 
   ngOnInit(): void {
+    this.books$ = this.wishlistQuery.selectAll();
   }
 
+  trackBooksItemsByFn = (bookItem: BookItem): BookItem['id'] => bookItem?.id;
 }
