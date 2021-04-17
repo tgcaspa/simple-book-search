@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { take } from 'rxjs/operators';
 
+import { OnRemoveFromWishlistActionRef } from '../../models/wishlist-actions';
 import { BooksStore } from './../../state/books.store';
 import { BookItem } from '../../state/book.model';
 import { VolumeInfoModalComponent } from '../volume-info-modal/volume-info-modal.component';
@@ -28,7 +29,8 @@ export class VolumeInfoCardComponent {
   };
 
   constructor(private modalService: BsModalService,
-              private booksStore: BooksStore) {
+              private booksStore: BooksStore,
+              private wishlistRef: OnRemoveFromWishlistActionRef) {
   }
 
   showMoreDetails(): void {
@@ -48,6 +50,6 @@ export class VolumeInfoCardComponent {
   }
 
   onRemoveFromWishlist(bookItem: BookItem): void {
-    // TODO
+    this.wishlistRef.removeFromWishlist(bookItem);
   }
 }
