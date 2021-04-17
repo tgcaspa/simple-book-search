@@ -1,4 +1,3 @@
-import { WishlistQuery } from '../../../wishlist/state/wishlist.query';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { combineLatest, Observable } from 'rxjs';
@@ -6,7 +5,8 @@ import { map } from 'rxjs/operators';
 
 import { BookItem } from './../../state/book.model';
 import { BooksQuery } from '../../state/books.query';
-import { WishlistStore } from '../../../wishlist/state/wishlist.store';
+import { WishlistService } from '../../../wishlist/services/wishlist.service';
+import { WishlistQuery } from '../../../wishlist/state/wishlist.query';
 
 @Component({
   selector: 'app-volume-info-modal',
@@ -19,7 +19,7 @@ export class VolumeInfoModalComponent implements OnInit {
 
   constructor(private modalRef: BsModalRef,
               private booksQuery: BooksQuery,
-              private wishlistStore: WishlistStore,
+              private wishlistService: WishlistService,
               private wishlistQuery: WishlistQuery) {
   }
 
@@ -40,6 +40,6 @@ export class VolumeInfoModalComponent implements OnInit {
   }
 
   addToWishlist(bookItem: BookItem): void {
-    this.wishlistStore.add({ ...bookItem, isWishlish: true });
+    this.wishlistService.add({ ...bookItem, isWishlish: true });
   }
 }
