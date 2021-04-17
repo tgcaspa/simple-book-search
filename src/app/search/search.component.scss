@@ -1,0 +1,21 @@
+:host {
+  width: 100%;
+
+  .search-bar-container {
+    .fa-search,
+    .fa-circle-o-notch {
+      position: absolute;
+      top: 1.45rem;
+      font-size: 1.25rem;
+      color: #495057;
+    }
+
+    .fa-search {
+      left: 2.5rem;
+    }
+
+    .fa-circle-o-notch {
+      right: 2.5rem;
+    }
+  }
+}

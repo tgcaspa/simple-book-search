@@ -1,1 +1,44 @@
-<p>search works!</p>
+<div class="search-bar-container row mb-5">
+  <div class="col">
+    <input id="search-bar"
+           name="search-bar"
+           class="form-control"
+           placeholder="Start typing..."
+           autocomplete="off"
+           [formControl]="searchBarControl">
+
+    <i class="fa fa-search" aria-hidden="true"></i>
+    <i *ngIf="isLoading$ | async"
+       class="fa fa-circle-o-notch fa-spin"
+       aria-hidden="true">
+    </i>
+  </div>
+</div>
+
+<ng-container *ngIf="books$ | async as books">
+  <div class="search-results-container">
+    <ng-container *ngIf="books.length">
+      <!-- Total results -->
+      <div class="row mb-4">
+        <div class="col">
+          <p>About {{ books.length }} results</p>
+        </div>
+        <div class="col-4 text-right">
+          <a type="button" class="btn btn-outline-primary btn-go-to-wishlist"
+             routerLink="/wishlist"
+             title="Go To Wishlist">
+            <i class="fa fa-heart-o mx-2" aria-hidden="true"></i>
+            Wishlist
+          </a>
+        </div>
+      </div>
+      <!-- Search results -->
+      <div class="row">
+        <div *ngFor="let bookItem of books; trackBy: trackBooksItemsByFn"
+             class="col-xs-12 col-sm-6 col-md-4 mb-5">
+          <app-volume-info-card [bookItem]="bookItem"></app-volume-info-card>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
