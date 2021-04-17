@@ -16,6 +16,9 @@ export class VolumeInfoCardComponent {
   @Input()
   bookItem: BookItem;
 
+  @Input()
+  disableShowMoreDetails?: boolean;
+
   private modalRef: BsModalRef;
   private modalOptions: ModalOptions = {
     class: 'modal-xl'
@@ -26,6 +29,10 @@ export class VolumeInfoCardComponent {
   }
 
   showMoreDetails(): void {
+    if (this.disableShowMoreDetails) {
+      return;
+    }
+
     this.booksStore.setActive(this.bookItem.id);
 
     this.modalRef = this.modalService.show(VolumeInfoModalComponent, this.modalOptions);
