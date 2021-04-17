@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,6 +11,7 @@ import { LayoutHeaderComponent } from './layout-header/layout-header.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     UserModule
   ],
   exports: [

@@ -18,10 +18,16 @@
   }
 
   .btn-logout,
+  .navbar .nav-link:hover:not(.active),
   #github-logo {
     &:hover {
       opacity: 0.8;
+      color: inherit;
     }
+  }
+
+  .navbar .nav-link.active:hover {
+    cursor: default;
   }
 
   #github-logo {
