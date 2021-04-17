@@ -9,7 +9,8 @@ export interface SearchState {
 
 export const createInitialSearchState = () => ({
   maxResults: 20,
-  startIndex: 0
+  startIndex: 0,
+  loading: false
 });
 
 export const createQueryValue = (value: string): string => {
