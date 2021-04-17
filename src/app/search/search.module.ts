@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { BooksModule } from '../common/books/books.module';
+import { ResultsContainerModule } from '../common/results-container/results-container.module';
 import { SearchRoutingModule } from './search-routing.module';
 import { SearchComponent } from './search.component';
 import { SearchService } from './services/search.service';
@@ -18,6 +19,7 @@ import { SearchService } from './services/search.service';
     HttpClientModule,
     ReactiveFormsModule,
     BooksModule,
+    ResultsContainerModule,
     SearchRoutingModule
   ],
   providers: [

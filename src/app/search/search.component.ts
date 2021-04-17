@@ -1,14 +1,15 @@
-import { SearchStore } from './state/search/search.store';
-import { SearchQuery } from './state/search/search.query';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { Observable } from 'rxjs';
-import { debounceTime, switchMap, finalize, tap } from 'rxjs/operators';
+import { debounceTime, switchMap, tap } from 'rxjs/operators';
 
+import { ResultsContainerComponent } from '../common/results-container/results-container.component';
 import { BooksQuery } from './../common/books/state/books.query';
 import { BookItem, BooksState } from '../common/books/state/book.model';
 import { SearchService } from './services/search.service';
+import { SearchStore } from './state/search/search.store';
+import { SearchQuery } from './state/search/search.query';
 
 @Component({
   selector: 'app-search',
@@ -16,11 +17,15 @@ import { SearchService } from './services/search.service';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit, OnDestroy {
+  @ViewChild(ResultsContainerComponent, {static: true})
+  resultsContainer: ResultsContainerComponent;
+
   searchBarControl: FormControl;
 
   books$: Observable<BooksState>;
   isLoading$: Observable<boolean>;
 
+  disableShowMoreDetails: boolean = false;
   hideFooterActions: boolean = true;
 
   constructor(private searchService: SearchService,
@@ -41,8 +46,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     // Destroy subscriptions.
   }
 
-  trackBooksItemsByFn = (bookItem: BookItem): BookItem['id'] => bookItem?.id;
-
   protected registerControlValueChange(): void {
     this.searchBarControl
         .valueChanges
@@ -53,7 +56,15 @@ export class SearchComponent implements OnInit, OnDestroy {
           tap(() => this.searchStore.setLoading(false)),
           untilDestroyed(this),
         )
-        .subscribe();
+        .subscribe(bookItems => this.setResults(bookItems));
   }
 
+  private setResults(bookItems: BookItem[]): void {
+    if (this.resultsContainer) {
+      this.resultsContainer.disableShowMoreDetails = this.disableShowMoreDetails;
+      this.resultsContainer.disableShowMoreDetails = this.disableShowMoreDetails;
+      this.resultsContainer.hideFooterActions = this.hideFooterActions;
+      this.resultsContainer.bookItems = bookItems;
+    }
+  }
 }

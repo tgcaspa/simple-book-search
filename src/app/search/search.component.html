@@ -15,24 +15,4 @@
   </div>
 </div>
 
-<ng-container *ngIf="books$ | async as books">
-  <div class="search-results-container">
-    <ng-container *ngIf="books.length">
-      <!-- Total results -->
-      <div class="row mb-4">
-        <div class="col">
-          <p>About {{ books.length }} results</p>
-        </div>
-      </div>
-      <!-- Search results -->
-      <div class="row">
-        <div *ngFor="let bookItem of books; trackBy: trackBooksItemsByFn"
-             class="col-xs-12 col-sm-6 col-md-4 mb-5">
-          <app-volume-info-card [bookItem]="bookItem"
-                                [hideFooterActions]="hideFooterActions">
-          </app-volume-info-card>
-        </div>
-      </div>
-    </ng-container>
-  </div>
-</ng-container>
+<app-results-container></app-results-container>
