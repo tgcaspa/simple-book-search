@@ -1,0 +1,28 @@
+<div class="card"
+     title="Show More Details"
+     (click)="showMoreDetails()">
+  <img [src]="bookItem?.volumeInfo?.imageLinks?.thumbnail"
+       class="card-img-top"
+       alt="Image Thumbnail">
+  <div class="card-body">
+    <h5 class="card-title mb-2">{{ bookItem?.volumeInfo?.title }}</h5>
+    <p class="card-text card-authors mb-3">{{ bookItem?.volumeInfo?.authors | json }}</p>
+
+    <div class="row no=gutters">
+      <div class="div col rating">
+        <span class="text-muted">Rating</span>
+        <div>
+          <i class="fa fa-star mx-1"></i>
+          <span class="text-sm">{{ bookItem?.volumeInfo?.averageRating }}</span>
+        </div>
+      </div>
+      <div class="div col pages">
+        <span class="text-muted">Pages</span>
+        <div>
+          <i class="fa fa-book mx-1"></i>
+          <span class="text-sm">{{ bookItem?.volumeInfo?.pageCount }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

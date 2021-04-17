@@ -1,0 +1,41 @@
+.card {
+  height: 9rem;
+  cursor: pointer;
+  box-shadow: 1px 1px 5px #c9c9c9;
+
+  &-img-top {
+    position: absolute;
+    top: -1rem;
+    left: -1rem;
+    width: 7rem;
+    height: 9rem;
+  }
+
+  &-body {
+    padding: 0.5rem;
+    padding-left: 8rem;
+  }
+
+  &-title {
+    height: 1.25rem;
+  }
+
+  &-title,
+  &-authors {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+  &-authors {
+    height: 1.25rem;
+  }
+
+  .col.rating {
+    .fa-star {
+      color: yellow;
+    }
+  }
+}
