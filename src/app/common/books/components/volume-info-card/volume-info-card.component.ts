@@ -1,4 +1,4 @@
-import { WishlistStore } from './../../../../wishlist/state/wishlist.store';
+import { WishlistStore } from '../../../wishlist/state/wishlist.store';
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { take } from 'rxjs/operators';

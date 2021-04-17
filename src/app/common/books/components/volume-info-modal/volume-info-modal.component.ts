@@ -1,4 +1,4 @@
-import { WishlistQuery } from './../../../../wishlist/state/wishlist.query';
+import { WishlistQuery } from '../../../wishlist/state/wishlist.query';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { combineLatest, Observable } from 'rxjs';
@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { BookItem } from './../../state/book.model';
 import { BooksQuery } from '../../state/books.query';
-import { WishlistStore } from './../../../../wishlist/state/wishlist.store';
+import { WishlistStore } from '../../../wishlist/state/wishlist.store';
 
 @Component({
   selector: 'app-volume-info-modal',

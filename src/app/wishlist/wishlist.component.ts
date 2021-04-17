@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { BookItem, BooksState } from '../common/books/state/book.model';
-import { WishlistQuery } from './state/wishlist.query';
+import { WishlistQuery } from '../common/wishlist/state/wishlist.query';
 
 @Component({
   selector: 'app-wishlist',

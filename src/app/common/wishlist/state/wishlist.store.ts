@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { EntityState, StoreConfig } from '@datorama/akita';
 
-import { BooksState } from './../../common/books/state/book.model';
-import { BooksStore } from './../../common/books/state/books.store';
+import { BooksState } from '../../books/state/book.model';
+import { BooksStore } from '../../books/state/books.store';
 
 export interface WishlistState extends EntityState<BooksState, BooksState['id']> {}
 
