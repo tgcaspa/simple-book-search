@@ -6,6 +6,7 @@ import { debounceTime, switchMap, tap } from 'rxjs/operators';
 
 import { ResultsContainerComponent } from '../common/results-container/results-container.component';
 import { BooksQuery } from './../common/books/state/books.query';
+import { BooksService } from "../common/books/services/books.service";
 import { BookItem, BooksState } from '../common/books/state/book.model';
 import { SearchService } from './services/search.service';
 import { SearchStore } from './state/search/search.store';
@@ -31,6 +32,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   constructor(private searchService: SearchService,
               private searchStore: SearchStore,
               private searchQuery: SearchQuery,
+              private booksService: BooksService,
               private booksQuery: BooksQuery) { }
 
   ngOnInit(): void {
@@ -43,7 +45,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Destroy subscriptions.
+    // Reset books store from results.
+    this.booksService.reset();
   }
 
   protected registerControlValueChange(): void {

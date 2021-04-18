@@ -15,4 +15,8 @@ export class BooksService {
   removeActive(bookItem: BookItem): void {
     return this.store.removeActive(bookItem.id);
   }
+
+  reset(): void {
+    return this.store.reset();
+  }
 }
