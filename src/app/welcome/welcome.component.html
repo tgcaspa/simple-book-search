@@ -1,26 +1,34 @@
-<p>welcome works!</p>
-
-<input id="username"
-       name="username"
-       class="form-control"
-       autocomplete="off"
-       appNotEmptyUsername
-       [formControl]="usernameControl">
-<!-- Error messages -->
-<div *ngIf="!usernameControl.pristine && usernameControl.invalid"
-     class="text-danger">
-    <!-- Username error -->
-    <p *ngIf="usernameControl.hasError('username')">{{ usernameControl.getError('username') }}</p>
+<div class="jumbotron mb-5">
+  <h1 class="display-4">Welcome to Simple Book Search App</h1>
+  <p class="lead">Let me know your username to continue...</p>
+  <hr class="my-4">
+  <div class="row">
+    <div class="username-container col">
+      <input id="username"
+             name="username"
+             class="form-control"
+             placeholder="Type your username"
+             autocomplete="off"
+             appNotEmptyUsername
+             [formControl]="usernameControl">
+      <!-- Error messages -->
+      <div *ngIf="!usernameControl.pristine && usernameControl.invalid"
+          class="text-danger mt-2">
+          <!-- Username error -->
+          <p *ngIf="usernameControl.hasError('username')">
+            <i class="fa fa-exclamation-circle mx-2" aria-hidden="true"></i>
+            {{ usernameControl.getError('username') }}
+          </p>
+      </div>
+    </div>
+    <div class="actions-container col-12 col-sm-2 text-center">
+      <button class="btn"
+              [disabled]="usernameControl.invalid"
+              (click)="onContinue()">
+        <i class="fa fa-2x fa-angle-double-right" aria-hidden="true"></i>
+        <span class="mt-2 d-block">Continue</span>
+      </button>
+    </div>
+    </div>
 </div>
-
-
-<div class="container">
-  <div class="actions text-center">
-    <button class="btn"
-            [disabled]="usernameControl.invalid"
-            (click)="onContinue()">
-      <i class="fa fa-2x fa-angle-double-down" aria-hidden="true"></i>
-      <span class="mt-2 d-block">Continue</span>
-    </button>
-  </div>
-</div>
+  
