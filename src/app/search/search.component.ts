@@ -26,6 +26,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   books$: Observable<BooksState>;
   isLoading$: Observable<boolean>;
 
+  disablePagination: boolean = false;
   disableShowMoreDetails: boolean = false;
   hideFooterActions: boolean = true;
 
@@ -64,7 +65,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   private setResults(bookItems: BookItem[]): void {
     if (this.resultsContainer) {
-      this.resultsContainer.disableShowMoreDetails = this.disableShowMoreDetails;
+      this.resultsContainer.disablePagination = this.disablePagination;
       this.resultsContainer.disableShowMoreDetails = this.disableShowMoreDetails;
       this.resultsContainer.hideFooterActions = this.hideFooterActions;
       this.resultsContainer.bookItems = bookItems;

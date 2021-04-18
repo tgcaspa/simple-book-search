@@ -16,6 +16,8 @@ export class WishlistComponent implements OnInit {
   resultsContainer: ResultsContainerComponent;
 
   books$: Observable<BooksState>;
+
+  disablePagination: boolean = true;
   disableShowMoreDetails: boolean = true;
   hideFooterActions: boolean = false;
 
@@ -29,6 +31,7 @@ export class WishlistComponent implements OnInit {
 
   private setResults(bookItems: BookItem[]): void {
     if (this.resultsContainer) {
+      this.resultsContainer.disablePagination = this.disablePagination;
       this.resultsContainer.disableShowMoreDetails = this.disableShowMoreDetails;
       this.resultsContainer.hideFooterActions = this.hideFooterActions;
       this.resultsContainer.bookItems = bookItems;
