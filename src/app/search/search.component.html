@@ -1,17 +1,22 @@
-<div class="search-bar-container row mb-5">
-  <div class="col">
-    <input id="search-bar"
-           name="search-bar"
-           class="form-control"
-           placeholder="Start typing..."
-           autocomplete="off"
-           [formControl]="searchBarControl">
+<div class="jumbotron mb-5">
+  <h1 class="display-4">Search Sceen</h1>
+  <p class="lead">This is a simple book search module requests to Google's books service.</p>
+  <hr class="my-4">
+  <div class="search-bar-container row">
+    <div class="col">
+      <input id="search-bar"
+            name="search-bar"
+            class="form-control"
+            placeholder="Start typing..."
+            autocomplete="off"
+            [formControl]="searchBarControl">
 
-    <i class="fa fa-search" aria-hidden="true"></i>
-    <i *ngIf="isLoading$ | async"
-       class="fa fa-circle-o-notch fa-spin"
-       aria-hidden="true">
-    </i>
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <i *ngIf="isLoading$ | async"
+        class="fa fa-circle-o-notch fa-spin"
+        aria-hidden="true">
+      </i>
+    </div>
   </div>
 </div>
 
