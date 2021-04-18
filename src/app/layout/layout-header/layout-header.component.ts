@@ -16,6 +16,8 @@ export class LayoutHeaderComponent {
   username$: Observable<UserState['username']> = this.userQuery.username$;
   isUserLoggedIn$: Observable<boolean> = this.userQuery.isUserLoggedIn$();
 
+  isCollapsed: boolean = true;
+
   menuItems: Route[] = [
     {
       path: '/search',
