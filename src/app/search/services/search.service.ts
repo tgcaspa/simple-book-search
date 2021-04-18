@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgEntityService, NgEntityServiceConfig } from '@datorama/akita-ng-entity-service';
 import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { finalize, tap } from 'rxjs/operators';
 
 import { BookItem, BooksState } from '../../common/books/state/book.model';
 import { BooksStore } from '../../common/books/state/books.store';
@@ -30,6 +30,7 @@ export class SearchService extends NgEntityService<BooksState> {
     this.store.setLoading(true);
 
     return this.get(createGetConfig(value, this.searchQuery.getValue())).pipe(
+      tap(console.log),
       finalize(() => this.store.setLoading(false))
     );
   }

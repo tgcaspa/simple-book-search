@@ -21,7 +21,8 @@
   <!-- Pagination -->
   <div class="row">
     <div class="col-xs-12 col-12">
-      <pagination [totalItems]="totalItems"
+      <pagination [itemsPerPage]="maxResults$ | async"
+                  [totalItems]="totalItems$ | async"
                   [(ngModel)]="currentPage"
                   (pageChanged)="pageChanged($event)">
       </pagination>

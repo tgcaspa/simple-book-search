@@ -23,6 +23,7 @@ export class ResultsContainerComponent implements OnInit {
   maxResults$: Observable<number>;
   totalItems$: Observable<number>;
   currentPage$: Observable<number>;
+  currentPage: number;
 
   disablePagination: boolean;
   disableShowMoreDetails: boolean;
@@ -34,9 +35,11 @@ export class ResultsContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.maxResults$ = this.searchQuery.maxResults$;
+    this.totalItems$ = this.searchQuery.totalItems$;
+    this.currentPage = 1;
   }
 
   pageChanged(event: any): void {
-    
+
   }
 }

@@ -9,6 +9,7 @@ import { SearchStore } from './search.store';
 export class SearchQuery extends Query<SearchState> {
   maxResults$: Observable<number> = this.select('maxResults');
   startIndex$: Observable<number> = this.select('startIndex');
+  totalItems$: Observable<number> = this.select('totalItems');
 
   constructor(protected store: SearchStore) {
     super(store);
