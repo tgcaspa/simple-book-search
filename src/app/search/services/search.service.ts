@@ -27,6 +27,7 @@ export class SearchService extends NgEntityService<BooksState> {
   search(value: string): Observable<BookItem[]> {
     // If no value- set empty entities.
     if (!value) {
+      this.resetSearchStore();
       return this.setEmptyEntities();
     }
     // Start search process.
@@ -37,6 +38,10 @@ export class SearchService extends NgEntityService<BooksState> {
       map(extractBookEntities),
       finalize(() => this.store.setLoading(false))
     );
+  }
+
+  resetSearchStore(): void {
+    return this.searchStore.reset();
   }
 
   updateSearchStore(state: Partial<SearchState>): void {
