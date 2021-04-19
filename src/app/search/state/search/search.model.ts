@@ -1,7 +1,5 @@
 import { HttpGetConfig } from "@datorama/akita-ng-entity-service";
 
-import { extractBookEntities } from "src/app/common/books/state/book.model";
-
 export interface SearchState {
   maxResults: number;
   startIndex: number;
@@ -28,6 +26,5 @@ export const createGetConfig = (value: string, { startIndex, maxResults }): Http
     q: createQueryValue(value),
     startIndex: String(startIndex),
     maxResults: String(maxResults)
-  },
-  mapResponseFn: extractBookEntities
+  }
 })
