@@ -34,8 +34,9 @@ export class SearchService extends NgEntityService<BooksState> {
     this.store.setLoading(true);
 
     return this.get(createGetConfig(value, this.searchQuery.getValue())).pipe(
-      tap(response => this.setTotalItems(response)),
+      tap((response: BooksVolumesResponse) => this.setTotalItems(response)),
       map(extractBookEntities),
+      tap((items: BookItem[]) => this.booksStore.set(items)),
       finalize(() => this.store.setLoading(false))
     );
   }

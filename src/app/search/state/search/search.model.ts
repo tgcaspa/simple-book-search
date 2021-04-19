@@ -27,7 +27,9 @@ export const createGetConfig = (value: string, { startIndex, maxResults }): Http
     q: createQueryValue(value),
     startIndex: String(startIndex),
     maxResults: String(maxResults)
-  }
+  },
+  // Manually write to the store.
+  skipWrite: true
 })
 
 export const calcStartIndexPage = (event: PageChangedEvent): number => {
