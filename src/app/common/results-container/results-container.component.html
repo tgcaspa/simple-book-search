@@ -17,7 +17,7 @@
       </div>
     </div>
     <!-- Pagination -->
-    <div class="row">
+    <div *ngIf="!disablePagination" class="row">
       <div class="col">
         <pagination [itemsPerPage]="maxResults$ | async"
                     [totalItems]="totalItems$ | async"
