@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Optional } from '@angular/core';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { Observable } from "rxjs";
 
@@ -36,7 +36,7 @@ export class ResultsContainerComponent implements OnInit {
 
   trackBooksItemsByFn = (bookItem: BookItem): BookItem['id'] => bookItem?.id;
 
-  constructor(private searchComponentRef: SearchComponentRef) { }
+  constructor(@Optional() private searchComponentRef: SearchComponentRef) { }
 
   ngOnInit(): void {
     this.currentPage = 1;
