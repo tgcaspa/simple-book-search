@@ -1,4 +1,5 @@
 import { HttpGetConfig } from "@datorama/akita-ng-entity-service";
+import { PageChangedEvent } from "ngx-bootstrap/pagination";
 
 export interface SearchState {
   maxResults: number;
@@ -28,3 +29,7 @@ export const createGetConfig = (value: string, { startIndex, maxResults }): Http
     maxResults: String(maxResults)
   }
 })
+
+export const calcStartIndexPage = (event: PageChangedEvent): number => {
+  return (event?.page - 1) * event?.itemsPerPage;
+}

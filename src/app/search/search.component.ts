@@ -1,20 +1,25 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, forwardRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { Observable } from 'rxjs';
 import { debounceTime, switchMap, tap } from 'rxjs/operators';
 
-import { ResultsContainerComponent } from '../common/results-container/results-container.component';
+import { ResultsContainerComponent, SearchComponentRef } from '../common/results-container/results-container.component';
 import { BooksQuery } from './../common/books/state/books.query';
 import { BooksService } from "../common/books/services/books.service";
 import { BookItem, BooksState } from '../common/books/state/book.model';
+import { calcStartIndexPage } from './state/search/search.model';
 import { SearchService } from './services/search.service';
 import { SearchQuery } from './state/search/search.query';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
+  providers: [
+    { provide: SearchComponentRef, useExisting: forwardRef(() => SearchComponent) }
+  ]
 })
 export class SearchComponent implements OnInit, OnDestroy {
   @ViewChild(ResultsContainerComponent, {static: true})
@@ -48,6 +53,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.booksService.reset();
   }
 
+  pageChanged(event: PageChangedEvent): void {
+    this.searchService.updateSearchStore({ startIndex: calcStartIndexPage(event) });
+    this.searchBarControl.updateValueAndValidity();
+  }
+
   protected registerControlValueChange(): void {
     this.searchBarControl
         .valueChanges
@@ -66,6 +76,10 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.resultsContainer.disablePagination = this.disablePagination;
       this.resultsContainer.disableShowMoreDetails = this.disableShowMoreDetails;
       this.resultsContainer.hideFooterActions = this.hideFooterActions;
+
+      this.resultsContainer.maxResults$ = this.searchQuery.maxResults$;
+      this.resultsContainer.totalItems$ = this.searchQuery.totalItems$;
+
       this.resultsContainer.bookItems = bookItems;
     }
   }

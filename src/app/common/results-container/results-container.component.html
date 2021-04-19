@@ -16,16 +16,15 @@
         </app-volume-info-card>
       </div>
     </div>
-  </ng-container>
-
-  <!-- Pagination -->
-  <div class="row">
-    <div class="col-xs-12 col-12">
-      <pagination [itemsPerPage]="maxResults$ | async"
-                  [totalItems]="totalItems$ | async"
-                  [(ngModel)]="currentPage"
-                  (pageChanged)="pageChanged($event)">
-      </pagination>
+    <!-- Pagination -->
+    <div class="row">
+      <div class="col">
+        <pagination [itemsPerPage]="maxResults$ | async"
+                    [totalItems]="totalItems$ | async"
+                    [(ngModel)]="currentPage"
+                    (pageChanged)="pageChanged($event)">
+        </pagination>
+      </div>
     </div>
-  </div>
+  </ng-container>
 </div>
