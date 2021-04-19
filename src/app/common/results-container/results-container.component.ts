@@ -43,6 +43,9 @@ export class ResultsContainerComponent implements OnInit {
   }
 
   pageChanged(event: PageChangedEvent): void {
+    if (this.disablePagination) {
+      return;
+    }
     this.searchComponentRef.pageChanged(event);
   }
 }
