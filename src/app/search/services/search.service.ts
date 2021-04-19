@@ -1,4 +1,3 @@
-import { SearchState } from './../state/search/search.model';
 import { Injectable } from '@angular/core';
 import { NgEntityService, NgEntityServiceConfig } from '@datorama/akita-ng-entity-service';
 import { Observable } from 'rxjs';
@@ -8,6 +7,7 @@ import { BookItem, BooksState, BooksVolumesResponse, extractBookEntities } from 
 import { BooksStore } from '../../common/books/state/books.store';
 import { BooksQuery } from '../../common/books/state/books.query';
 import { createGetConfig } from '../state/search/search.model';
+import { SearchState } from './../state/search/search.model';
 import { SearchStore } from './../state/search/search.store';
 import { SearchQuery } from '../state/search/search.query';
 
@@ -41,6 +41,10 @@ export class SearchService extends NgEntityService<BooksState> {
 
   updateSearchStore(state: Partial<SearchState>): void {
     this.searchStore.update(state);
+  }
+
+  setLoading(loading: boolean): void {
+    this.searchStore.setLoading(loading);
   }
 
   protected setEmptyEntities(): Observable<BookItem[]> {

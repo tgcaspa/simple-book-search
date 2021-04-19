@@ -9,7 +9,6 @@ import { BooksQuery } from './../common/books/state/books.query';
 import { BooksService } from "../common/books/services/books.service";
 import { BookItem, BooksState } from '../common/books/state/book.model';
 import { SearchService } from './services/search.service';
-import { SearchStore } from './state/search/search.store';
 import { SearchQuery } from './state/search/search.query';
 
 @Component({
@@ -31,7 +30,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   hideFooterActions: boolean = true;
 
   constructor(private searchService: SearchService,
-              private searchStore: SearchStore,
               private searchQuery: SearchQuery,
               private booksService: BooksService,
               private booksQuery: BooksQuery) { }
@@ -54,10 +52,10 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.searchBarControl
         .valueChanges
         .pipe(
-          tap(() => this.searchStore.setLoading(true)),
+          tap(() => this.searchService.setLoading(true)),
           debounceTime(250),
           switchMap(value => this.searchService.search(value)),
-          tap(() => this.searchStore.setLoading(false)),
+          tap(() => this.searchService.setLoading(false)),
           untilDestroyed(this),
         )
         .subscribe(bookItems => this.setResults(bookItems));
