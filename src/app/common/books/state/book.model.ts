@@ -12,7 +12,7 @@ export interface VolumeInfo {
   authors: string[];
   categories: string[];
   description: string;
-  language: number;
+  language: string;
   imageLinks: {
     thumbnail: string
   };
