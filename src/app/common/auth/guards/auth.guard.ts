@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
@@ -12,8 +12,7 @@ export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService,
               private userQuery: UserQuery) { }
 
-  canActivate(route: ActivatedRouteSnapshot,
-              state: RouterStateSnapshot): Observable<boolean> {
+  canActivate(): Observable<boolean> {
     const isUserLoggedIn$ = this.userQuery.isUserLoggedIn$();
     return isUserLoggedIn$.pipe(
         switchMap(isUserLoggedIn => {
