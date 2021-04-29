@@ -23,17 +23,20 @@ describe('UserService', () => {
   });
 
   describe('#loadUser', () => {
+    const user = {
+      username: 'Dmitry Hershkovich'
+    };
 
-    it('should update store with given user\'s data', () => {
-      const user = {
-        username: 'Dmitry Hershkovich'
-      };
+    it('should update store with the given user\'s data', () => {
       userService.loadUser(user).subscribe(
-        result => {
-          expect(userStoreSpy.update).toHaveBeenCalledTimes(1);
+        () => expect(userStoreSpy.update).toHaveBeenCalledTimes(1),
+        fail
+      );
+    });
 
-          expect(result).toEqual(user);
-        },
+    it('should return the same given user\'s data', () => {
+      userService.loadUser(user).subscribe(
+        result => expect(result).toEqual(user),
         fail
       );
     });
