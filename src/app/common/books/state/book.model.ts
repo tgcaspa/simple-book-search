@@ -8,10 +8,10 @@ export interface BooksVolumesResponse {
 
 export interface VolumeInfo {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   authors: string[];
   categories: string[];
-  description: string;
+  description?: string;
   language: string;
   imageLinks: {
     thumbnail: string
