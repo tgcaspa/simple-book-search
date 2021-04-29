@@ -16,4 +16,8 @@ export class WishlistService {
   remove(bookItem: BookItem): any {
     return this.store.remove(bookItem.id);
   }
+
+  reset(): void {
+    return this.store.reset();
+  }
 }
