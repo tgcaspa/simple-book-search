@@ -9,7 +9,7 @@ export interface WishlistState extends EntityState<BooksState, BooksState['id']>
 export const STORE_NAME_WISHLIST = 'wishlist';
 
 @Injectable({ providedIn: 'root' })
-@StoreConfig({ name: STORE_NAME_WISHLIST })
+@StoreConfig({ name: STORE_NAME_WISHLIST, resettable: true })
 export class WishlistStore extends BooksStore {
 
 }
