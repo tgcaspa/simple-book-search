@@ -1,8 +1,8 @@
-import { fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { EntityStore, Store, StoreConfig } from '@datorama/akita';
-import { noop, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 import { BooksState } from '../../books/state/book.model';
@@ -53,7 +53,7 @@ describe('AuthService', () => {
     let wishlist;
     let logout$: Observable<boolean>;
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
       user = new UserStore();
       user.update({ username: 'Dmitry Hershkovich' });
 
@@ -78,9 +78,9 @@ describe('AuthService', () => {
       }]);
 
       logout$ = service.logout().pipe(take(1));
-    }));
+    });
 
-    it('should reset all stores states', fakeAsync(() => {
+    it('should reset all stores states', () => {
       const expected = {
         user: {
           username: '',
@@ -93,29 +93,24 @@ describe('AuthService', () => {
         }
       };
 
-      logout$.subscribe(noop, fail);
-      tick();
-
-      expect({user: user._value(), wishlist: wishlist._value()}).toEqual(expected);
-    }));
-
-    it('should navigate to root', fakeAsync(() => {
-      logout$.subscribe(noop, fail);
-      tick();
-
-      expect(routerServiceSpy.navigateByUrl).toHaveBeenCalledOnceWith('/');
-    }));
-
-    it('should logout with result true', fakeAsync(() => {
-      let result: boolean;
-
       logout$.subscribe(
-        isLoggedout => result = isLoggedout,
+        () => expect({ user: user._value(), wishlist: wishlist._value() }).toEqual(expected),
         fail
       );
-      tick();
+    });
 
-      expect(result).toBeTruthy();
-    }));
+    it('should navigate to root', () => {
+      logout$.subscribe(
+        () => expect(routerServiceSpy.navigateByUrl).toHaveBeenCalledOnceWith('/'),
+        fail
+      );
+    });
+
+    it('should logout with result true', () => {
+      logout$.subscribe(
+        result => expect(result).toBeTruthy(),
+        fail
+      );
+    });
   });
 });
