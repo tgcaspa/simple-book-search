@@ -3,14 +3,30 @@ import { TestBed } from '@angular/core/testing';
 import { BooksService } from './books.service';
 
 describe('BooksService', () => {
-  let service: BooksService;
+  let booksService: BooksService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(BooksService);
+    TestBed.configureTestingModule({
+      providers: [
+        BooksService
+      ]
+    });
+    booksService = TestBed.inject(BooksService);
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(booksService).toBeTruthy();
+  });
+
+  describe('#setActive', () => {
+
+  });
+
+  describe('#removeActive', () => {
+
+  });
+
+  describe('#reset', () => {
+
   });
 });
