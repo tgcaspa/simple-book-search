@@ -27,9 +27,6 @@ export class WelcomeComponent {
     this.userService
         .loadUser({ username: this.usernameControl.value })
         .pipe(take(1))
-        .subscribe(
-          () => this.router.navigateByUrl(this.SUCCESS_URL),
-          console.error
-        );
+        .subscribe(() => this.router.navigateByUrl(this.SUCCESS_URL));
   }
 }
