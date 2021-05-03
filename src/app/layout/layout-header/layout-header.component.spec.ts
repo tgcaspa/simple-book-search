@@ -28,11 +28,16 @@ const routerConfig = [
       displayInMenu: true
     }
   },
+  {
+    path: 'some-route',
+    data: {
+      title: 'Some Route'
+    }
+  },
 ];
 
 describe('LayoutHeaderComponent', () => {
   let authServiceSpy: jasmine.SpyObj<AuthService>;
-  let routerServiceSpy: Router;
   let component: LayoutHeaderComponent;
   let fixture: ComponentFixture<LayoutHeaderComponent>;
 
@@ -66,17 +71,24 @@ describe('LayoutHeaderComponent', () => {
       menuItems = component.getMenuItems();
     });
 
-    it('should get menu items that defined as displayInMenu in route config', () => {
+    it('should get menu items that defined as displayInMenu truly in route config', () => {
       expect(menuItems.length).toBe(2);
-
-      const hasWelcomeItem = menuItems.find(item => item.path === 'welcome');
-      expect(hasWelcomeItem).toBeUndefined();
 
       const hasSearchItem = menuItems.find(item => item.path === 'search');
       expect(hasSearchItem).toBeDefined();
 
       const hasWishlistItem = menuItems.find(item => item.path === 'wishlist');
       expect(hasWishlistItem).toBeDefined();
+    });
+
+    it('should get menu items that defined as displayInMenu falsy in route config', () => {
+      const hasWelcomeItem = menuItems.find(item => item.path === 'welcome');
+      expect(hasWelcomeItem).toBeUndefined();
+    });
+
+    it('should get menu items that undefined as displayInMenu in route config', () => {
+      const hasSomeRouteItem = menuItems.find(item => item.path === 'some-route');
+      expect(hasSomeRouteItem).toBeUndefined();
     });
   });
 
