@@ -34,6 +34,7 @@ export class WishlistComponent implements OnInit {
       this.resultsContainer.disablePagination = this.disablePagination;
       this.resultsContainer.disableShowMoreDetails = this.disableShowMoreDetails;
       this.resultsContainer.hideFooterActions = this.hideFooterActions;
+
       this.resultsContainer.bookItems = bookItems;
     }
   }
