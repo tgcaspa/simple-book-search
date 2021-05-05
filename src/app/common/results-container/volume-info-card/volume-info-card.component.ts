@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { take } from 'rxjs/operators';
 
 import { WishlistService } from '../../wishlist/services/wishlist.service';
@@ -23,7 +23,6 @@ export class VolumeInfoCardComponent {
   @Input()
   hideFooterActions?: boolean;
 
-  private modalRef: BsModalRef;
   private modalOptions: ModalOptions = {
     class: 'modal-xl'
   };
@@ -40,10 +39,8 @@ export class VolumeInfoCardComponent {
 
     this.booksService.setActive(this.bookItem);
 
-    this.modalRef = this.modalService.show(VolumeInfoModalComponent, this.modalOptions);
-    this.modalRef.onHidden.pipe(take(1)).subscribe(() => {
-      // Destroy modalRef on close.
-      this.modalRef = undefined;
+    this.modalService.show(VolumeInfoModalComponent, this.modalOptions);
+    this.modalService.onHidden.pipe(take(1)).subscribe(() => {
       // Remove active book item.
       this.booksService.removeActive(this.bookItem);
     });
