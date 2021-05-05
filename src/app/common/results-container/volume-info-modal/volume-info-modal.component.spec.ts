@@ -147,37 +147,11 @@ describe('VolumeInfoModalComponent', () => {
       wishlistServiceSpy.add.and.returnValue(undefined);
 
       const bookItem = {
-        id: 'KODWBVNNPLOE',
-        volumeInfo: {
-          title: 'Book 1',
-          subtitle: 'subtitle 1',
-          authors: [],
-          categories: [],
-          description: 'description 1',
-          averageRating: 3,
-          language: 'en',
-          imageLinks: {
-            thumbnail: 'http://books.google.com/books/content?id=KODWBVNNPLOE&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
-          },
-          pageCount: 1166
-        },
+        ...bookActiveItem,
         isWishlish: false
       };
       const expected = {
-        id: 'KODWBVNNPLOE',
-        volumeInfo: {
-          title: 'Book 1',
-          subtitle: 'subtitle 1',
-          authors: [],
-          categories: [],
-          description: 'description 1',
-          averageRating: 3,
-          language: 'en',
-          imageLinks: {
-            thumbnail: 'http://books.google.com/books/content?id=KODWBVNNPLOE&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
-          },
-          pageCount: 1166
-        },
+        ...bookActiveItem,
         isWishlish: true
       };
 
