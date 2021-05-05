@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -17,7 +17,7 @@ import { WishlistQuery } from '../../wishlist/state/wishlist.query';
 export class VolumeInfoModalComponent implements OnInit {
   bookItem$: Observable<BookItem>;
 
-  constructor(private modalRef: BsModalRef,
+  constructor(private modalService: BsModalService,
               private booksQuery: BooksQuery,
               private wishlistService: WishlistService,
               private wishlistQuery: WishlistQuery) {
@@ -36,7 +36,7 @@ export class VolumeInfoModalComponent implements OnInit {
   }
 
   close(): void {
-    this.modalRef.hide();
+    this.modalService.hide();
   }
 
   addToWishlist(bookItem: BookItem): void {
