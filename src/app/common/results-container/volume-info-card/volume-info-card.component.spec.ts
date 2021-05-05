@@ -49,8 +49,12 @@ describe('VolumeInfoCardComponent', () => {
     modalService = TestBed.inject(BsModalService);
     booksServiceSpy = TestBed.inject(BooksService) as jasmine.SpyObj<BooksService>;
     wishlistServiceSpy = TestBed.inject(WishlistService) as jasmine.SpyObj<WishlistService>;
+
     fixture = TestBed.createComponent(VolumeInfoCardComponent);
+
     component = fixture.componentInstance;
+    component.bookItem = bookItem;
+
     fixture.detectChanges();
   });
 
@@ -80,7 +84,6 @@ describe('VolumeInfoCardComponent', () => {
 
     it('should set active into books store if disableShowMoreDetails is false', () => {
       component.disableShowMoreDetails = false;
-      component.bookItem = bookItem;
 
       component.showMoreDetails();
 
@@ -101,7 +104,6 @@ describe('VolumeInfoCardComponent', () => {
       booksServiceSpy.removeActive.and.returnValue(undefined);
 
       component.disableShowMoreDetails = false;
-      component.bookItem = bookItem;
 
       modalService.onShown.subscribe(() => modalService.hide());
 
