@@ -33,7 +33,7 @@ describe('BooksService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: BooksStore, useValue: jasmine.createSpyObj('BooksStore', ['setActive']) },
+        { provide: BooksStore, useValue: jasmine.createSpyObj('BooksStore', ['setActive', 'removeActive', 'reset']) },
         BooksService
       ]
     });
@@ -56,9 +56,19 @@ describe('BooksService', () => {
 
   describe('#removeActive', () => {
 
+    it('should remove active book item by id', () => {
+      booksService.removeActive(bookItem);
+
+      expect(booksStoreSpy.removeActive).toHaveBeenCalledOnceWith(bookItem.id);
+    });
   });
 
   describe('#reset', () => {
 
+    it('should reset books store', () => {
+      booksService.reset();
+
+      expect(booksStoreSpy.reset).toHaveBeenCalledTimes(1);
+    });
   });
 });
