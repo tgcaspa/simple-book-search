@@ -41,6 +41,8 @@ describe('SearchService', () => {
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
+    searchQuerySpy = jasmine.createSpyObj('SearchQuery', ['getValue']);
+
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
@@ -48,12 +50,12 @@ describe('SearchService', () => {
           provide: NG_ENTITY_SERVICE_CONFIG,
           useValue: { baseUrl: 'https://www.googleapis.com/books/v1' }
         },
-        { provide: SearchQuery, useValue: jasmine.createSpyObj('SearchQuery', ['getValue']) },
+        { provide: SearchQuery, useValue: searchQuerySpy },
         SearchService
       ]
     });
     httpTestingController = TestBed.inject(HttpTestingController);
-    searchQuerySpy = TestBed.inject(SearchQuery) as jasmine.SpyObj<SearchQuery>;
+
     searchService = TestBed.inject(SearchService);
   });
 

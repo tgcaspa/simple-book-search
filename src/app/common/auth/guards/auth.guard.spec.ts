@@ -12,15 +12,16 @@ describe('AuthGuard', () => {
   let authGuard: AuthGuard;
 
   beforeEach(() => {
+    authServiceSpy = jasmine.createSpyObj('AuthService', ['logout'])
+    userQuerySpy = jasmine.createSpyObj('UserQuery', ['isUserLoggedIn$'])
+
     TestBed.configureTestingModule({
       providers: [
-        { provide: AuthService, useValue: jasmine.createSpyObj('AuthService', ['logout']) },
-        { provide: UserQuery, useValue: jasmine.createSpyObj('UserQuery', ['isUserLoggedIn$']) },
+        { provide: AuthService, useValue: authServiceSpy },
+        { provide: UserQuery, useValue: userQuerySpy },
         AuthGuard
       ]
     });
-    authServiceSpy = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
-    userQuerySpy = TestBed.inject(UserQuery) as jasmine.SpyObj<UserQuery>;
     authGuard = TestBed.inject(AuthGuard);
   });
 
@@ -31,6 +32,7 @@ describe('AuthGuard', () => {
   describe('#canActivate', () => {
 
     it('should activate if the user is logged in', () => {
+      authServiceSpy.logout.and.returnValue(of(true));
       userQuerySpy.isUserLoggedIn$.and.returnValue(of(true));
 
       authGuard.canActivate().subscribe(

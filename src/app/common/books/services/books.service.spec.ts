@@ -31,13 +31,14 @@ describe('BooksService', () => {
   let booksService: BooksService;
 
   beforeEach(() => {
+    booksStoreSpy = jasmine.createSpyObj('BooksStore', ['setActive', 'removeActive', 'reset']);
+
     TestBed.configureTestingModule({
       providers: [
-        { provide: BooksStore, useValue: jasmine.createSpyObj('BooksStore', ['setActive', 'removeActive', 'reset']) },
+        { provide: BooksStore, useValue: booksStoreSpy },
         BooksService
       ]
     });
-    booksStoreSpy = TestBed.inject(BooksStore) as jasmine.SpyObj<BooksStore>;
     booksService = TestBed.inject(BooksService);
   });
 

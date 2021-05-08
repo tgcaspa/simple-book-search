@@ -2,8 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { EntityStore, Store, StoreConfig } from '@datorama/akita';
-import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
 
 import { BooksState } from '../../books/state/book.model';
 import { UserState } from '../../user/state/user.model';
@@ -31,17 +29,16 @@ describe('AuthService', () => {
   let routerServiceSpy: jasmine.SpyObj<Router>;
 
   beforeEach(() => {
-    const router = jasmine.createSpyObj('Router', ['navigateByUrl']);
+    routerServiceSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
 
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       providers: [
         AuthService,
-        { provide: Router, useValue: router }
+        { provide: Router, useValue: routerServiceSpy }
       ]
     });
     service = TestBed.inject(AuthService);
-    routerServiceSpy = TestBed.inject(Router) as jasmine.SpyObj<Router>;
   });
 
   it('should be created', () => {
@@ -51,7 +48,6 @@ describe('AuthService', () => {
   describe('#logout', () => {
     let user;
     let wishlist;
-    let logout$: Observable<boolean>;
 
     beforeEach(() => {
       user = new UserStore();
@@ -76,8 +72,6 @@ describe('AuthService', () => {
           'pageCount': 1166
         }
       }]);
-
-      logout$ = service.logout().pipe(take(1));
     });
 
     it('should reset all stores states', () => {
@@ -93,21 +87,23 @@ describe('AuthService', () => {
         }
       };
 
-      logout$.subscribe(
+      service.logout().subscribe(
         () => expect({ user: user._value(), wishlist: wishlist._value() }).toEqual(expected),
         fail
       );
     });
 
     it('should navigate to root', () => {
-      logout$.subscribe(
+      routerServiceSpy.navigateByUrl.and.returnValue(Promise.resolve(true));
+
+      service.logout().subscribe(
         () => expect(routerServiceSpy.navigateByUrl).toHaveBeenCalledOnceWith('/'),
         fail
       );
     });
 
     it('should logout with result true', () => {
-      logout$.subscribe(
+      service.logout().subscribe(
         result => expect(result).toBeTruthy(),
         fail
       );

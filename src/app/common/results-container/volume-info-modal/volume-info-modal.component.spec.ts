@@ -73,27 +73,27 @@ describe('VolumeInfoModalComponent', () => {
   let fixture: ComponentFixture<VolumeInfoModalComponent>;
 
   beforeEach(async () => {
+    modalServiceSpy = jasmine.createSpyObj('BsModalService', ['hide']);
+    booksQuerySpy = jasmine.createSpyObj('BooksQuery', ['selectActive']);
+    wishlistServiceSpy = jasmine.createSpyObj('WishlistService', ['add']);
+    wishlistQuerySpy = jasmine.createSpyObj('WishlistQuery', ['selectAll']);
+
     await TestBed.configureTestingModule({
       imports: [ModalModule.forRoot()],
       declarations: [VolumeInfoModalComponent],
       providers: [
-        { provide: BsModalService, useValue: jasmine.createSpyObj('BsModalService', ['hide']) },
-        { provide: BooksQuery, useValue: jasmine.createSpyObj('BooksQuery', ['selectActive']) },
-        { provide: WishlistService, useValue: jasmine.createSpyObj('WishlistService', ['add']) },
-        { provide: WishlistQuery, useValue: jasmine.createSpyObj('WishlistQuery', ['selectAll']) }
+        { provide: BsModalService, useValue: modalServiceSpy },
+        { provide: BooksQuery, useValue: booksQuerySpy },
+        { provide: WishlistService, useValue: wishlistServiceSpy },
+        { provide: WishlistQuery, useValue: wishlistQuerySpy }
       ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    modalServiceSpy = TestBed.inject(BsModalService) as jasmine.SpyObj<BsModalService>;
-    booksQuerySpy = TestBed.inject(BooksQuery) as jasmine.SpyObj<BooksQuery>;
-    wishlistServiceSpy = TestBed.inject(WishlistService) as jasmine.SpyObj<WishlistService>;
-    wishlistQuerySpy = TestBed.inject(WishlistQuery) as jasmine.SpyObj<WishlistQuery>;
     fixture = TestBed.createComponent(VolumeInfoModalComponent);
     component = fixture.componentInstance;
-
   });
 
   it('should create', () => {

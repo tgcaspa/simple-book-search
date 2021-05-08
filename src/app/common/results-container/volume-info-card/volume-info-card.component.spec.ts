@@ -33,13 +33,16 @@ describe('VolumeInfoCardComponent', () => {
   let fixture: ComponentFixture<VolumeInfoCardComponent>;
 
   beforeEach(async () => {
+    booksServiceSpy = jasmine.createSpyObj('BooksService', ['setActive', 'removeActive']);
+    wishlistServiceSpy = jasmine.createSpyObj('WishlistService', ['remove']);
+
     await TestBed.configureTestingModule({
       imports: [ModalModule.forRoot()],
       declarations: [VolumeInfoCardComponent],
       providers: [
         BsModalService,
-        { provide: BooksService, useValue: jasmine.createSpyObj('BooksService', ['setActive', 'removeActive']) },
-        { provide: WishlistService, useValue: jasmine.createSpyObj('WishlistService', ['remove']) }
+        { provide: BooksService, useValue: booksServiceSpy },
+        { provide: WishlistService, useValue: wishlistServiceSpy }
       ]
     })
     .compileComponents();
@@ -47,8 +50,6 @@ describe('VolumeInfoCardComponent', () => {
 
   beforeEach(() => {
     modalService = TestBed.inject(BsModalService);
-    booksServiceSpy = TestBed.inject(BooksService) as jasmine.SpyObj<BooksService>;
-    wishlistServiceSpy = TestBed.inject(WishlistService) as jasmine.SpyObj<WishlistService>;
 
     fixture = TestBed.createComponent(VolumeInfoCardComponent);
 

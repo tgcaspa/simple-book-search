@@ -15,6 +15,9 @@ describe('WelcomeComponent', () => {
   let fixture: ComponentFixture<WelcomeComponent>;
 
   beforeEach(async () => {
+    routerServiceSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
+    userServiceSpy = jasmine.createSpyObj('UserService', ['loadUser']);
+
     await TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
@@ -22,16 +25,14 @@ describe('WelcomeComponent', () => {
       ],
       declarations: [WelcomeComponent],
       providers: [
-        { provide: Router, useValue: jasmine.createSpyObj('Router', ['navigateByUrl']) },
-        { provide: UserService, useValue: jasmine.createSpyObj('UserService', ['loadUser']) }
+        { provide: Router, useValue: routerServiceSpy },
+        { provide: UserService, useValue: userServiceSpy }
       ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    routerServiceSpy = TestBed.inject(Router) as jasmine.SpyObj<Router>;
-    userServiceSpy = TestBed.inject(UserService) as jasmine.SpyObj<UserService>;
     fixture = TestBed.createComponent(WelcomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

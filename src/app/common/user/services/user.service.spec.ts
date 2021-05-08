@@ -8,13 +8,14 @@ describe('UserService', () => {
   let userService: UserService;
 
   beforeEach(() => {
+    userStoreSpy = jasmine.createSpyObj('UserStore', ['update']);
+
     TestBed.configureTestingModule({
       providers: [
-        { provide: UserStore, useValue: jasmine.createSpyObj('UserStore', ['update']) },
+        { provide: UserStore, useValue: userStoreSpy },
         UserService
       ]
     });
-    userStoreSpy = TestBed.inject(UserStore) as jasmine.SpyObj<UserStore>;
     userService = TestBed.inject(UserService);
   });
 

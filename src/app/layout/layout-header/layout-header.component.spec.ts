@@ -38,23 +38,27 @@ const routerConfig = [
 
 describe('LayoutHeaderComponent', () => {
   let authServiceSpy: jasmine.SpyObj<AuthService>;
+  let routerServiceSpy: jasmine.SpyObj<Router>;
   let component: LayoutHeaderComponent;
   let fixture: ComponentFixture<LayoutHeaderComponent>;
 
   beforeEach(async () => {
+    authServiceSpy = jasmine.createSpyObj('AuthService', ['logout']);
+    routerServiceSpy = jasmine.createSpyObj('Router', [], { config: routerConfig });
+
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [LayoutHeaderComponent],
       providers: [
-        { provide: Router, useValue: jasmine.createSpyObj('Router', [], { config: routerConfig }) },
-        { provide: AuthService, useValue: jasmine.createSpyObj('AuthService', ['logout']) },
+        { provide: Router, useValue: routerServiceSpy },
+        { provide: AuthService, useValue: authServiceSpy },
       ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    authServiceSpy = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
+
     fixture = TestBed.createComponent(LayoutHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
