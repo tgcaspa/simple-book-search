@@ -9,7 +9,7 @@ import { setTheme } from 'ngx-bootstrap/utils';
 export class AppComponent {
 
   constructor() {
-    // Bootstrap 4.
-    setTheme('bs4');
+    // Bootstrap 5.
+    setTheme('bs5');
   }
 }
