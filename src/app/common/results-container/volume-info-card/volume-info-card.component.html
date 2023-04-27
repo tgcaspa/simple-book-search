@@ -12,8 +12,7 @@
       <div class="div col rating">
         <span class="text-muted">Rating</span>
         <div>
-          <i class="fa fa-star mx-1"></i>
-          <span class="text-sm">{{ bookItem?.volumeInfo?.averageRating }}</span>
+          <rating [(ngModel)]="bookItem.volumeInfo.averageRating" [max]="5" [readonly]="true"></rating>
         </div>
       </div>
       <div class="div col pages">

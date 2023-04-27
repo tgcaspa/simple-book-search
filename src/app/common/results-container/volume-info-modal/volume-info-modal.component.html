@@ -35,8 +35,7 @@
         <div class="row mt-3">
           <div class="col rating">
             <div class="text-muted">Rating</div>
-            <i class="fa fa-star mx-1"></i>
-            {{ bookItem?.volumeInfo?.averageRating }}
+            <rating [(ngModel)]="bookItem.volumeInfo.averageRating" [max]="5" [readonly]="true"></rating>
           </div>
           <div class="col pages">
             <div class="text-muted">Pages</div>
